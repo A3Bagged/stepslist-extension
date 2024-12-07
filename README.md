@@ -18,7 +18,7 @@ To use the `StepsList`, you need to register it with your Markdown instance. Her
 
 ```python
 from markdown import Markdown
-from markdown_extensions.steps_extension import StepsList
+from extensions.stepslist import StepsList
 
 md = Markdown(extensions=[StepsList()])
 
