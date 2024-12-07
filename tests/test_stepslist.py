@@ -1,6 +1,6 @@
 import unittest
 from markdown import Markdown
-from markdown_extensions.steps_extension import StepsList
+from extensions.stepslist import StepsList 
 
 class TestStepsList(unittest.TestCase):
 
