@@ -1,55 +1,98 @@
-# StepsList
+<div align="center">
 
-The `StepsList` is a custom Markdown extension designed to convert `<steps>` tags into ordered lists with a class of "steps". This is particularly useful for formatting step-by-step instructions or processes in a consistent and visually appealing manner.
+StepsList
+=========================================
+
+[![PyPI](https://img.shields.io/pypi/v/stepslist)](https://pypi.org/project/stepslist/)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/stepslist)
+[![License](https://img.shields.io/github/license/a3bagged/stepslist-extension)](https://github.com/A3Bagged/stepslist-extension/blob/main/LICENSE.md)
+
+
+**Extension for [Python-Markdown](https://python-markdown.github.io/): to be used on [Mkdocs](https://github.com/mkdocs/mkdocs) and [Material for Mkdocs](https://github.com/squidfunk/mkdocs-material)**
+
+
+This Python package provides a custom Markdown extension that allows users to define step blocks in their Markdown documents. The extension recognizes specific markers and formats the enclosed content for better readability.
+
+</div>
+
+## Features
+- Define step blocks using `--steps--` and `--!steps--` markers.
+- Automatically wraps the content in a `<div>` with a class for custom styling.
+- Easy integration with the existing Markdown parser.
 
 ## Installation
-
-To use the `StepsList`, you need to have Python and the `markdown` library installed. You can install the `markdown` library using pip:
-
+To use this extension, ensure you have the markdown library installed. You can install it using pip:
 ```bash
 pip install markdown
 ```
 
-Once you have the `markdown` library, you can include the `StepsList` in your project by copying the `stepslist.py` file into your project directory.
+You can install this package using pip:
+
+```bash
+pip install stepslist
+```
 
 ## Usage
+To use this extension, add it to your MkDocs configuration file (`mkdocs.yml`):
 
-To use the `StepsList`, you need to register it with your Markdown instance. Here is a simple example:
+```
+markdown_extensions:
+  - stepslist
+```
+Now, you can use the `--steps--` `--!steps--` tag in your Markdown files:
 
-```python
-from markdown import Markdown
-from extensions.stepslist import StepsList
+> [!IMPORTANT]
+> Note that you will need blank lines between the tags and your list otherwise it will not work!
 
-md = Markdown(extensions=[StepsList()])
+### Markdown
 
-input_text = """
-<steps>
-Step 1
-Step 2
-Step 3
-</steps>
-"""
+```
+--steps--
 
-html_output = md.convert(input_text)
-print(html_output)
+1. Step one
+2. Step two
+3. Step three
+
+--!steps--
+```
+### Output example
+This will be rendered as an ordered list within a div that you can style:
+
+```
+<div class="md-steps">
+  <ol>
+    <li>Step one</li>
+    <li>Step two</li>
+    <li>Step three</li>
+  </ol>
+</div>
 ```
 
-This will convert the `<steps>` block into an HTML ordered list:
+### Styling
+To style in `CSS` you need the following selectors:
+You can also style the `::before` and `::after` pseudo elements.  
+It's recommended to keep the `.md-steps` styling for the div itself unchanged unless you need to
+```
+.md-steps ol {
+  /* Styling goes here */
+}
 
-```html
-<ol class="steps">
-    <li>Step 1</li>
-    <li>Step 2</li>
-    <li>Step 3</li>
-</ol>
+.md-steps>ol>li {
+  /* Styling goes here */
+}
+
+/* Optional */
+.md-steps>ol>li::before {
+  /* Styling goes here */
+}
+
+.md-steps>ol>li::after {
+  /* Styling goes here */
+}
 ```
 
-## Configuration
+<div align="center">
 
-The `StepsList` does not require any specific configuration options. It is designed to work out-of-the-box by converting any `<steps>` tags found in the markdown text into ordered lists.
+_If you like this extension consider buying me a :coffee:[coffee](https://ko-fi.com/cvanliere)._
 
-## Conclusion
-
-The `StepsList` is a simple yet powerful tool for enhancing the readability and structure of step-by-step instructions in markdown documents. For further assistance or to contribute to the project, please refer to the project's repository or contact the maintainers.
-
-Feel free to explore and modify the extension to suit your specific needs!
+</div>
